@@ -1,0 +1,10 @@
+{
+"typeDriver": "appium",
+"mobilePlatform":"android",
+"urlServerAppium":"http://127.0.0.1:4723/wd/hub",
+"mobileLanguage":"ES_es",
+"app":"test.apk",
+"nameMobile":"Pixel_2_API_27",
+"versionMobile":"8.1.0",
+"adbName":"emulator-5554"
+}
