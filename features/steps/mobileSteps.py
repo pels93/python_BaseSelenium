@@ -9,7 +9,7 @@ mobile = None
 @Given('AppMobile Cerrar Popup')
 def startmobile(context):
     global appium, mobile
-    appium = context.driver
+    appium = context.type_driver
     mobile = mobile_page(appium)
     mobile.popup()
     mobile.el1[0].click()

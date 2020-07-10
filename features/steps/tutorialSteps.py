@@ -9,7 +9,7 @@ selenium = None
 @Given('Encender el navegador')
 def startBrower(context):
     global selenium
-    selenium = context.driver
+    selenium = context.type_driver
 
 
 @When('El navegador introduce la URL "{web}"')

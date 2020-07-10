@@ -13,7 +13,7 @@ def before_all(context):
 def before_scenario(context, scenario):
     global driver
     driver = StartDriver()
-    context.driver = driver.get_driver()
+    context.type_driver = driver.get_driver()
 
 
 def after_scenario(context, scenario):
