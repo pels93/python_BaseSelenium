@@ -23,7 +23,8 @@ class StartDriver:
         Utils.folder_create(directoryScreen)
         if self.typeDriver == appium:
             directoryScreenFinal = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
-                Utils.merge_directory_to_folder(directoryScreen, self._get_driver_name_()), ReadConfig.get_mobile_platform()),
+                Utils.merge_directory_to_folder(directoryScreen, self._get_driver_name_()),
+                ReadConfig.get_mobile_platform()),
                 scenario)
         else:
             directoryScreenFinal = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
