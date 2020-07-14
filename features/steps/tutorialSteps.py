@@ -14,7 +14,7 @@ def startBrower(context):
 
 @When('El navegador introduce la URL "{web}"')
 def step_impl(context, web):
-    selenium.utilsDriver.browserGoTo(web)
+    selenium.utilsDriver.browser_go_to(web)
 
 
 @When('Se visualiza la pagina de busqueda de google')
@@ -39,4 +39,4 @@ def step_impl(context):
 @Then('Comprobar que lleva a "{url}"')
 def step_impl(context, url):
     selenium.utilsDriver.sleep(2)
-    selenium.utilsWebElements.assertEqualText(url, selenium.utilsDriver.getBrowserUrl(), True)
+    selenium.utilsWebElements.assertEqualText(url, selenium.utilsDriver.get_browser_url(), True)

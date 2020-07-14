@@ -4,7 +4,7 @@ from pages.googleResultPage import google_result_search
 
 auxini_selenium = StartTypeDriver.StartDriver()
 selenium = auxini_selenium.selenium
-selenium.utilsDriver.browserGoTo("https://www.google.es")
+selenium.utilsDriver.browser_go_to("https://www.google.es")
 google = google_Page(selenium)
 barra = google.barra
 barra.send_keys("amazon")
@@ -14,5 +14,5 @@ result = google_result_search(selenium)
 result.resultFirst.click()
 selenium.utilsDriver.wait(20)
 selenium.utilsDriver.sleep(2)
-a = selenium.utilsDriver.getBrowserUrl()
+a = selenium.utilsDriver.get_browser_url()
 selenium.utilsWebElements.assertEqual(a, "htttps:www", False)
