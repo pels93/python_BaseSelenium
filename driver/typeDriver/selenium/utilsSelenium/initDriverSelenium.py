@@ -2,7 +2,7 @@ from selenium import webdriver
 from driver.typeDriver.interfaces.dictionary_driver import *
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager,IEDriverManager
 from webdriver_manager.opera import OperaDriverManager
 
 
@@ -15,6 +15,8 @@ class StartDriverSelenium:
             driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
         elif browser == edge:
             driver = webdriver.Edge(EdgeChromiumDriverManager().install())
+        elif browser == explorer:
+            driver = webdriver.Ie(IEDriverManager().install())
         elif browser == opera:
             driver = webdriver.Opera(executable_path=OperaDriverManager().install())
         elif browser == safari:

@@ -26,6 +26,8 @@ class ReadConfig:
             settings[tag] = opera
         elif aux.find("f") > -1:
             settings[tag] = firefox
+        elif aux.find("ex") > -1:
+            settings[tag] = explorer
         else:
             settings[tag] = chrome
         return str(settings[tag])
