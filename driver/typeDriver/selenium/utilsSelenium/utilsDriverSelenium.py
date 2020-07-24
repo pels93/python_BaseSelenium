@@ -46,12 +46,12 @@ class UtilsDriverSelenium():
         action = ActionChains(self.driver)
         action.move_to_element(element).release().perform()
 
-    def move_element_by_position(self, element):
+    def hover_element(self, element):
         width = element.size["width"]
         action = ActionChains(self.driver)
         action.move_to_element(element).move_by_offset((width / 2) - 2, 0).release().perform()
 
-    def move_element_by_position_and_click(self, element):
+    def hover_element_and_click(self, element):
         width = element.size["width"]
         action = ActionChains(self.driver)
         action.move_to_element(element).move_by_offset((width / 2) - 2, 0).click().release().perform()
