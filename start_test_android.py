@@ -45,8 +45,8 @@ while c < 2:
     mobile.deletAll()
     mobile.AC.click()
     c += 0
-appium.utilsMobileElements.pressLongElement(mobile.pantalla, 2000)
+appium.UtilsMobileElements.pressLongElement(mobile.pantalla, 2000)
 mobile.findResult()
 textResult = str(mobile.result.text)
 textResult = textResult[textResult.find('"') + 1:textResult.rfind('"')]
-appium.utilsMobileElements.assertEqualText(textResult, str(0), False)
+appium.UtilsMobileElements.assertEqualText(textResult, str(0), False)

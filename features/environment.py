@@ -3,7 +3,7 @@
 from driver.StartTypeDriver import StartDriver
 from driver.typeDriver.utilsSelectDriver.config import settings
 
-driver = None
+driver: StartDriver
 
 
 def before_all(context):

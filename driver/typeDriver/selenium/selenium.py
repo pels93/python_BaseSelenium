@@ -1,7 +1,7 @@
 from driver.typeDriver.utilsSelectDriver.aux_config import *
 from driver.typeDriver.selenium.utilsSelenium.initDriverSelenium import StartDriverSelenium
 from driver.typeDriver.selenium.utilsSelenium.utilsDriverSelenium import UtilsDriverSelenium
-from driver.typeDriver.selenium.utilsSelenium.utilsWebElements import utilsWebElements
+from driver.typeDriver.selenium.utilsSelenium.UtilsWebElements import UtilsWebElements
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import *
 
 
@@ -15,7 +15,7 @@ class Selenium:
         self.browser = ReadConfig.get_browser()
         self.driver = StartDriverSelenium.start_browser(self.browser)
         self.utilsDriver = UtilsDriverSelenium(self.driver)
-        self.utilsWebElements = utilsWebElements(self.driver)
+        self.utilsWebElements = UtilsWebElements(self.driver)
 
     def delete_old_drivers(self, enable_delete):
         if enable_delete:

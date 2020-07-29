@@ -1,9 +1,10 @@
 from behave import Given, When, Then
 from pages.mobile import mobile_page
+from driver.typeDriver.appium.appium import *
 
 # mod appium
-appium = None
-mobile = None
+appium: Appium
+mobile: mobile_page
 
 
 @Given('AppMobile Cerrar Popup')
@@ -23,21 +24,21 @@ def date(context):
 @When('comprueba todos los botones')
 def testbuttoncalculate(context):
     mobile.findElements()
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num0, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num1, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num2, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num3, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num4, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num5, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num6, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num7, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num8, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.num9, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.suma, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.resta, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num0, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num1, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num2, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num3, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num4, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num5, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num6, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num7, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num8, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.num9, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.suma, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.resta, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(
         mobile.multiplicacion, False)
-    appium.utilsMobileElements.assertIsDisplayOrEnanble(mobile.division, False)
+    appium.utilsMobileElements.assert_is_display_or_enable(mobile.division, False)
 
 
 @When('presione el numero "{numero}"')
