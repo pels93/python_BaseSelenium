@@ -21,10 +21,13 @@ class UtilsDriverSelenium:
     def wait(self, seconds):
         self.driver.implicitly_wait(seconds)
 
+    def delete_cache(self):
+        self.driver.delete_all_cookies()
+
     def browser_go_to(self, url):
         self.driver.get(url)
 
-    def browser_go_to_back(self, url):
+    def browser_go_to_back(self):
         self.driver.back()
 
     def get_browser_url(self):
@@ -34,7 +37,7 @@ class UtilsDriverSelenium:
         action = ActionChains(self.driver)
         action.click_and_hold(element).release().perform()
 
-    def click_clickposition(self, posx, posy):
+    def click_click_position(self, posx, posy):
         action = ActionChains(self.driver)
         action.move_by_offset(posx, posy).release().perform()
 
