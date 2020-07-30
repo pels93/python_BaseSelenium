@@ -60,5 +60,13 @@ class UtilsDriverSelenium:
         action = ActionChains(self.driver)
         action.move_to_element(element).move_by_offset((width / 2) - 2, 0).click().release().perform()
 
+    def drag_and_drop_element_to_element(self, element, element_final):
+        action = ActionChains(self.driver)
+        action.drag_and_drop(element, element_final).release().perform()
+
+    def drag_and_drop_element(self, element,pos_x,pos_y):
+        action = ActionChains(self.driver)
+        action.drag_and_drop_by_offset(element, pos_x,pos_y).release().perform()
+
     def scroll(self, pos_y):
         self.driver.execute_script("window.scrollBy(0," + pos_y + ")")
