@@ -1,7 +1,7 @@
 from driver.typeDriver.utilsSelectDriver.aux_config import *
 from driver.typeDriver.selenium.utilsSelenium.initDriverSelenium import StartDriverSelenium
 from driver.typeDriver.selenium.utilsSelenium.utilsDriverSelenium import UtilsDriverSelenium
-from driver.typeDriver.selenium.utilsSelenium.UtilsWebElements import UtilsWebElements
+from driver.typeDriver.selenium.utilsSelenium.utilsWebElements import UtilsWebElements
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import *
 
 

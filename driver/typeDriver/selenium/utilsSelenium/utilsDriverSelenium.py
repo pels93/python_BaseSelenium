@@ -82,3 +82,12 @@ class UtilsDriverSelenium:
     def scroll_by_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
         self.sleep(2)
+
+    def open_new_tab(self):
+        self.driver.execute_script("window.open()")
+
+    def change_tab(self, index: int):
+        self.driver.switch_to.window(self.driver.window_handles[index])
+
+    def count_tabs(self):
+        return len(self.driver.window_handles)

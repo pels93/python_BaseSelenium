@@ -1,9 +1,10 @@
 from behave import Given, When, Then
 from pages.googlePage import google_Page
 from pages.googleResultPage import google_result_search
+from driver.typeDriver.selenium.selenium import *
 
 # mod selenium
-selenium = None
+selenium: Selenium
 
 
 @Given('Encender el navegador')
@@ -29,6 +30,22 @@ def step_impl(context, web):
     google.barra.submit()
 
 
+@When('se abre una segunda ventana')
+def step_impl(context):
+    selenium.utilsDriver.open_new_tab()
+
+
+@When('se selecciona la "{indice}" pestana')
+def step_impl(context, indice):
+    selenium.utilsDriver.change_tab(int(indice))
+
+
+@When('se cierra la pestana "{indice}"')
+def step_impl(context, indice):
+    selenium.utilsDriver.change_tab(int(indice))
+    selenium.utilsDriver.close()
+
+
 @When('Seleccionar el primer resultado en google')
 def step_impl(context):
     selenium.utilsDriver.sleep(2)
@@ -39,4 +56,4 @@ def step_impl(context):
 @Then('Comprobar que lleva a "{url}"')
 def step_impl(context, url):
     selenium.utilsDriver.sleep(2)
-    selenium.utilsWebElements.assertEqualText(url, selenium.utilsDriver.get_browser_url(), True)
+    selenium.utilsWebElements.assert_containt_text(url, selenium.utilsDriver.get_browser_url(), True)

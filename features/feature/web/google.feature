@@ -5,11 +5,17 @@ Feature: navegar por google
     Given Encender el navegador
     When  El navegador introduce la URL "https://google.es"
     And   Se visualiza la pagina de busqueda de google
+    And   se abre una segunda ventana
+    And   se selecciona la "1" pestana
+    And   El navegador introduce la URL "https://starfriend.es"
+    And   se selecciona la "1" pestana
+    And   se cierra la pestana "1"
+    And   se selecciona la "0" pestana
     And   Buscar en google por "nasa"
     And   Seleccionar el primer resultado en google
     Then  Comprobar que lleva a "https://www.nasa.gov/"
  
-  @nasa @google
+  @google
   Scenario Outline:El navegador busca <palabra>
     Given Encender el navegador
     When  El navegador introduce la URL <urls>
