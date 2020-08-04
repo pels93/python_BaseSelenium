@@ -2,7 +2,7 @@ from random import random
 import shutil
 import os
 from os import path
-
+from datetime import datetime
 
 class Utils:
 
@@ -82,6 +82,11 @@ class Utils:
     @staticmethod
     def folder_exists(name_folder):
         return path.exists(name_folder)
+
+    @staticmethod
+    def get_date():
+        now = datetime.now()
+        return str(now.strftime("%Y%m%d%H%M%S"))
 
     @staticmethod
     def print_info(string):

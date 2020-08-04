@@ -14,6 +14,7 @@ Feature: navegar por google
     And   Buscar en google por "nasa"
     And   Seleccionar el primer resultado en google
     Then  Comprobar que lleva a "https://www.nasa.gov/"
+    And imprimir logs consola
  
   @google
   Scenario Outline:El navegador busca <palabra>
