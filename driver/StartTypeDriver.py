@@ -3,6 +3,14 @@ from driver.typeDriver.selenium.selenium import Selenium
 from driver.typeDriver.appium.appium import Appium
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import *
 from driver.typeDriver.interfaces.dictionary_driver import *
+from driver.typeDriver.utilsSelectDriver.config import settings
+
+name_folder_screen = "ScreenShot"
+
+
+def delete_old_report():
+    if settings['enableDeleteOldReport']:
+        Utils.folder_delete(name_folder_screen)
 
 
 class StartDriver:
@@ -17,7 +25,6 @@ class StartDriver:
         self.get_driver().driver.quit()
 
     def scenario_fail(self, scenario, step, date):
-        name_folder_screen = "ScreenShot"
         directory_screen = Utils.merge_directory_to_folder(
             Utils.folder_proyect(), name_folder_screen)
         Utils.folder_create(directory_screen)

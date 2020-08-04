@@ -1,4 +1,5 @@
 {
 "typeDriver": "selenium",
-"typeBrowser": "chrome"
+"typeBrowser": "chrome",
+"enableDeleteOldReport": true
 }
