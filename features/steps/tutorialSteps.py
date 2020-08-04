@@ -30,7 +30,7 @@ def step_impl(context, web):
     google.barra.submit()
 
 
-@When('se abre una segunda ventana')
+@When('se abre una nueva pestana')
 def step_impl(context):
     selenium.utilsDriver.open_new_tab()
 
