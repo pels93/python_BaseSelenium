@@ -16,21 +16,22 @@ class StartDriver:
     def scenario_end(self):
         self.get_driver().driver.quit()
 
-    def scenario_fail(self, scenario, step):
-        nameFolderScreen = "ScreenShot"
-        directoryScreen = Utils.merge_directory_to_folder(
-            Utils.folder_proyect(), nameFolderScreen)
-        Utils.folder_create(directoryScreen)
+    def scenario_fail(self, scenario, step, date):
+        name_folder_screen = "ScreenShot"
+        directory_screen = Utils.merge_directory_to_folder(
+            Utils.folder_proyect(), name_folder_screen)
+        Utils.folder_create(directory_screen)
         if self.typeDriver == appium:
-            directoryScreenFinal = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
-                Utils.merge_directory_to_folder(directoryScreen, self._get_driver_name_()),
-                ReadConfig.get_mobile_platform()),
+            directory_screen_final = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
+                Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
+                    directory_screen, date), self._get_driver_name_()), ReadConfig.get_mobile_platform()),
                 scenario)
         else:
-            directoryScreenFinal = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
-                Utils.merge_directory_to_folder(directoryScreen, self._get_driver_name_()), ReadConfig.get_browser()),
+            directory_screen_final = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
+                Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
+                    directory_screen, date), self._get_driver_name_()), ReadConfig.get_browser()),
                 scenario)
-        self._screenshot_(Utils.folders_create_tree(directoryScreen, directoryScreenFinal), step)
+        self._screenshot_(Utils.folders_create_tree(directory_screen, directory_screen_final), step)
 
     def get_driver(self):
         if self.typeDriver == appium:
