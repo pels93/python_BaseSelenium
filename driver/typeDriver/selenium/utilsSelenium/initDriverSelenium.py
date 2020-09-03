@@ -2,8 +2,9 @@ from selenium import webdriver
 from driver.typeDriver.interfaces.dictionary_driver import *
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager,IEDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager, IEDriverManager
 from webdriver_manager.opera import OperaDriverManager
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 #   https://pypi.org/project/webdriver-manager/
@@ -22,5 +23,8 @@ class StartDriverSelenium:
         elif browser == safari:
             driver = webdriver.Safari()
         else:  # Chrome
-            driver = webdriver.Chrome(ChromeDriverManager().install())
+            # enable get log console
+            d = DesiredCapabilities.CHROME
+            d['loggingPrefs'] = {'browser': 'ALL'}
+            driver = webdriver.Chrome(ChromeDriverManager().install(), desired_capabilities=d)
         return driver

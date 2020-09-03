@@ -15,18 +15,27 @@ class StartDriverAppium:
                 platformName='iOS',
                 platformVersion=ReadConfig.get_mobile_version(),
                 automationName='xcuitest',
-                deviceName=ReadConfig.get_mobile_name(),
-                app=Utils.merge_directory_to_folder(AppsDirectory, ReadConfig.get_mobile_app())
+                deviceName=ReadConfig.get_mobile_name()
             )
+            #TEST APP OR WEB
+            if len(str(ReadConfig.get_mobile_app())) > 1:
+                desired_caps.update(dict(
+                    app=Utils.merge_directory_to_folder(AppsDirectory, ReadConfig.get_mobile_app())))
+            else:
+                desired_caps.update(dict(browserName='Safari'))
         else:
             desired_caps = dict(
                 platformName='Android',
                 platformVersion=ReadConfig.get_mobile_version(),
                 deviceName=ReadConfig.get_mobile_name(),
                 udid=ReadConfig.get_mobile_name_adb(),
-                locate=ReadConfig.get_mobile_language(),
-                app=Utils.merge_directory_to_folder(AppsDirectory, ReadConfig.get_mobile_app())
-
+                locate=ReadConfig.get_mobile_language()
             )
+            #TEST APP OR WEB
+            if len(str(ReadConfig.get_mobile_app())) > 1:
+                desired_caps.update(dict(
+                    app=Utils.merge_directory_to_folder(AppsDirectory, ReadConfig.get_mobile_app())))
+            else:
+                desired_caps.update(dict(browserName='Chrome'))
         driver = webdriver.Remote(str(settings['urlServerAppium']), desired_caps)
         return driver

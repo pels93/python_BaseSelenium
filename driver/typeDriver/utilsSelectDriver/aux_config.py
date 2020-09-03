@@ -22,9 +22,9 @@ class ReadConfig:
             settings[tag] = edge
         elif aux.find("sa") > -1:
             settings[tag] = safari
-        elif aux.find("p") > -1:
+        elif aux.find("op") > -1:
             settings[tag] = opera
-        elif aux.find("f") > -1:
+        elif aux.find("fi") > -1:
             settings[tag] = firefox
         elif aux.find("ex") > -1:
             settings[tag] = explorer
