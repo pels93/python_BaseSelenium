@@ -32,6 +32,23 @@ When run **Intellij** install the plugins `Cucumber for Java`, `Gherkin` and `Py
 ## Install
 download the project and import it into Intellij.
 
+## Install node (Only test web in mobile)
+Install [Node](https://nodejs.org/es/download/) (see the readme of [Base Seleium for Java](https://github.com/pels93/baseSelenium))
+
+Find version for android chrome
+
+[link1](https://chromedriver.storage.googleapis.com/2.41/notes.txt)
+[link2](https://chromedriver.storage.googleapis.com/)
+[link3](https://stackoverflow.com/questions/52241873/chromedriver-version-that-works-with-chrome-version-69-0-3497-81-while-using-sel
+)
+
+When installed **Node**, Run in CMD
+```seq
+npm uninstall -g appium
+npm install -g appium --chromedriver_version="2.41"
+npm install -g appium-doctor
+```
+
 ### Sequence Run
                     
 ```seq
