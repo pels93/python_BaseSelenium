@@ -7,9 +7,8 @@ from selenium.webdriver.remote.webelement import WebElement
 
 class UtilsDriverSelenium:
 
-    def __init__(self, driver, type_driver):
+    def __init__(self, driver):
         self.driver: WebDriver = driver
-        self.typeDriver = type_driver
 
     def sleep(self, seconds):
         time.sleep(seconds)
@@ -50,16 +49,6 @@ class UtilsDriverSelenium:
     def move_element_by_position(self, element):
         action = ActionChains(self.driver)
         action.move_to_element(element).release().perform()
-
-    def click(self, element: WebElement):
-        if str(self.typeDriver).lower() == 'iexplore':
-            self.driver.execute_script("return document.body.scrollHeight")
-            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            self.driver.execute_script("arguments[0].click();", element)
-            # action = ActionChains(self.driver)
-            # action.move_to_element(element).click().release().perform()
-        else:
-            element.click()
 
     def click_long(self, element):
         action = ActionChains(self.driver)

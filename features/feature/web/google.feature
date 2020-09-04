@@ -5,7 +5,7 @@ Feature: navegar por google
     Given Encender el navegador
     When  El navegador introduce la URL "https://google.es"
     And   Se visualiza la pagina de busqueda de google
-    And   se abre una segunda ventana
+    And   se abre una nueva pestana
     And   se selecciona la "1" pestana
     And   El navegador introduce la URL "https://starfriend.es"
     And   se selecciona la "1" pestana

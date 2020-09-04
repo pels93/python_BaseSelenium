@@ -1,7 +1,6 @@
 import time
 
 from behave import Given, When, Then
-from selenium.webdriver.chrome.webdriver import WebDriver
 from driver.typeDriver.selenium.selenium import *
 
 # mod selenium
@@ -17,6 +16,7 @@ def start_brower(context):
     global selenium, driver
     selenium = context.type_driver
     driver = selenium.driver
+    Utils.print_info("Error force for print log browser")
     for entry in driver.get_log('browser'):
         print(entry)
     assert 1 == 0
