@@ -1,12 +1,12 @@
 from driver.typeDriver.selenium.selenium import *
 
 
-class google_Page():
+class GooglePageObject():
 
-    def __init__(self, aux_seleium):
-        self.selenium: Selenium = aux_seleium
-        self.findElements()
+    def __init__(self, seleium):
+        self.selenium: Selenium = seleium
+        self.find_elements()
 
-    def findElements(self):
+    def find_elements(self):
         self.barra = self.selenium.utilsWebElements.find_element_by_name("q")
     # self.btnStartSesion = self.selenium.utilsWebElements.findElementByCssSelector("a#gb_70.gb_pe.gb_4.gb_5c");

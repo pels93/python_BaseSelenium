@@ -1,9 +1,9 @@
 from driver import StartTypeDriver
-from pages.mobile import mobile_page
+from pages.mobile import MobilePageObject
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import Utils
 
 appium = StartTypeDriver.StartDriver().appium
-mobile = mobile_page(appium)
+mobile = MobilePageObject(appium)
 mobile.popup()
 if len(mobile.el1) > 0:
     mobile.el1[0].click()

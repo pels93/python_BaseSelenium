@@ -1,17 +1,17 @@
 from behave import Given, When, Then
-from pages.mobile import mobile_page
+from pages.mobile import MobilePageObject
 from driver.typeDriver.appium.appium import *
 
 # mod appium
 appium: Appium
-mobile: mobile_page
+mobile: MobilePageObject
 
 
 @Given('AppMobile Cerrar Popup')
-def startmobile(context):
+def start_mobile(context):
     global appium, mobile
-    appium = context.type_driver
-    mobile = mobile_page(appium)
+    appium: Appium = context.type_driver
+    mobile: MobilePageObject = MobilePageObject(appium)
     mobile.popup()
     mobile.el1[0].click()
 
@@ -22,7 +22,7 @@ def date(context):
 
 
 @When('comprueba todos los botones')
-def testbuttoncalculate(context):
+def test_button_calculate(context):
     mobile.findElements()
     appium.utilsMobileElements.assert_is_display_or_enable(mobile.num0, False)
     appium.utilsMobileElements.assert_is_display_or_enable(mobile.num1, False)
@@ -73,7 +73,7 @@ def press_number_calculate(context, numero):
 
 
 @Then('el resultado tiene que ser "{numero}"')
-def startBrower(context, numero):
+def step(context, numero):
     appium.utilsMobileElements.pressLongElement(mobile.pantalla, 2000)
     mobile.findResult()
     textResult = str(mobile.result.text)

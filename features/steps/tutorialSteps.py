@@ -1,5 +1,5 @@
 from behave import Given, When, Then
-from pages.googlePage import google_Page
+from pages.googlePage import GooglePageObject
 from pages.googleResultPage import google_result_search
 from driver.typeDriver.selenium.selenium import *
 
@@ -25,7 +25,7 @@ def step_impl(context):
 
 @When('Buscar en google por "{web}"')
 def step_impl(context, web):
-    google = google_Page(selenium)
+    google = GooglePageObject(selenium)
     google.barra.send_keys(web)
     google.barra.submit()
 

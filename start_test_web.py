@@ -1,12 +1,12 @@
 from driver import StartTypeDriver
-from pages.googlePage import google_Page
+from pages.googlePage import GooglePageObject
 from pages.googleResultPage import google_result_search
 from driver.typeDriver.selenium.selenium import *
 
 auxini_selenium = StartTypeDriver.StartDriver()
 selenium: Selenium = auxini_selenium.selenium
 selenium.utilsDriver.browser_go_to("https://www.google.es")
-google = google_Page(selenium)
+google = GooglePageObject(selenium)
 barra = google.barra
 barra.send_keys("amazon")
 barra.submit()
@@ -14,7 +14,7 @@ barra.submit()
 selenium.utilsDriver.open_new_tab()
 selenium.utilsDriver.change_tab(1)
 selenium.utilsDriver.browser_go_to("https://www.google.es")
-google = google_Page(selenium)
+google = GooglePageObject(selenium)
 barra = google.barra
 barra.send_keys("amazon")
 selenium.utilsDriver.close()
