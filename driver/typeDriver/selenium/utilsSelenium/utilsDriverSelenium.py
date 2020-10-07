@@ -7,8 +7,9 @@ from selenium.webdriver.remote.webelement import WebElement
 
 class UtilsDriverSelenium:
 
-    def __init__(self, driver):
+    def __init__(self, driver, type_browser):
         self.driver: WebDriver = driver
+        self.typeBrowser  = type_browser
 
     def sleep(self, seconds):
         time.sleep(seconds)
@@ -37,18 +38,33 @@ class UtilsDriverSelenium:
     def browser_go_to_forward(self):
         self.driver.forward()
 
-    def browser_get_size_windows_width(self):
-        self.driver.get_window_size('width')
-
-    def browser_get_size_windows_height(self):
-        self.driver.get_window_size('height')
-
     def get_browser_url(self):
         return str(self.driver.current_url)
+
+    def browser_get_size_windows(self, mode):
+        aux = str(self.driver.get_window_size())
+        if mode.lower() == "width":
+            return int(aux[(aux.index(':') + 1):aux.index(',')])
+        else:
+            return int(aux[(aux.rindex(':') + 1):aux.index('}')])
+
+    def browser_get_size_view(self, mode):
+        if mode.lower() == "width":
+            return int(self.driver.execute_script("return screen.width"))
+        else:
+            return int(self.driver.execute_script("return screen.height"))
 
     def move_element_by_position(self, element):
         action = ActionChains(self.driver)
         action.move_to_element(element).release().perform()
+
+    def click(self, element: WebElement):
+        if str(self.typeBrowser).lower() == 'iexplore':
+            self.driver.execute_script("return document.body.scrollHeight")
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            self.driver.execute_script("arguments[0].click();", element)
+        else:
+            element.click()
 
     def click_long(self, element):
         action = ActionChains(self.driver)
@@ -102,6 +118,50 @@ class UtilsDriverSelenium:
         action = ActionChains(self.driver)
         action.drag_and_drop_by_offset(element, pos_x, pos_y).release().perform()
 
+    def drag_and_drop_div(self, element, pos_x=0, pos_y=0):
+        # https://github.com/SeleniumHQ/selenium/issues/3269
+        element_body: WebElement = self.driver.find_element_by_css_selector("body")
+        c_pixel = element.size["height"] * 0.80
+
+        aux_pos_x = int(pos_x / c_pixel)
+        aux_pos_y = int(pos_y / c_pixel)
+
+        if aux_pos_x < 0:
+            count_for_x = aux_pos_x * (-1)
+            aux_pos_x = -c_pixel
+        elif aux_pos_x == 0:
+            aux_pos_x = c_pixel
+            count_for_x = 0
+        else:
+            # need more size for effect css
+            c_pixel = element.size["width"] * 0.80
+            aux_pos_x = c_pixel
+            count_for_x = aux_pos_x
+
+        if aux_pos_y < 0:
+            count_for_y = aux_pos_y * (-1)
+            aux_pos_y = -c_pixel
+        elif aux_pos_y == 0:
+            count_for_y = 0
+        else:
+            aux_pos_y = c_pixel
+            count_for_y = aux_pos_y
+
+        if count_for_x > count_for_y:
+            aux_count = int(count_for_x)
+        else:
+            aux_count = int(count_for_y)
+
+        action = ActionChains(self.driver)
+        if self.typeBrowser == "firefox":
+            for y in range(aux_count):
+                action.click_and_hold(element).move_by_offset(aux_pos_x, aux_pos_y).release()
+        else:
+            for y in range(aux_count):
+                action.click_and_hold(element).move_by_offset(aux_pos_x, aux_pos_y).release(element_body).release()
+
+        action.perform()
+
     def open_new_tab(self):
         self.driver.execute_script("window.open()")
 
@@ -110,6 +170,9 @@ class UtilsDriverSelenium:
 
     def count_tabs(self):
         return len(self.driver.window_handles)
+
+    def close_tab(self):
+        self.close()
 
     def set_viewport_size(self, width, height):
         window_size = self.driver.execute_script("""

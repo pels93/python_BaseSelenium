@@ -15,8 +15,9 @@ class Selenium:
         self.delete_old_drivers(ReadConfig.get_enable_delete_old_driver())
         self.browser = ReadConfig.get_browser()
         self.driver: WebDriver = StartDriverSelenium.start_browser(self.browser)
-        self.utilsDriver = UtilsDriverSelenium(self.driver)
-        self.utilsWebElements = UtilsWebElements(self.driver)
+        self.utilsDriver = UtilsDriverSelenium(self.driver, self.browser)
+        self.utilsWebElements = UtilsWebElements(self.driver, self.browser)
+
 
     def delete_old_drivers(self, enable_delete):
         if enable_delete:

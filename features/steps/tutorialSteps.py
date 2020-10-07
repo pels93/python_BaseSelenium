@@ -81,4 +81,4 @@ def step_impl(context):
 @Then('Comprobar que lleva a "{url}"')
 def step_impl(context, url):
     selenium.utilsDriver.sleep(2)
-    selenium.utilsWebElements.assert_containt_text(url, selenium.utilsDriver.get_browser_url(), True)
+    selenium.utilsWebElements.assert_equal_text(url, selenium.utilsDriver.get_browser_url(), True)
