@@ -14,7 +14,7 @@ def before_all(context):
 def before_scenario(context, scenario):
     global driver
     driver = StartDriver()
-    context.type_driver = driver.get_driver()
+    context.type_driver = driver.typeDriver
 
 
 def after_scenario(context, scenario):
@@ -24,3 +24,4 @@ def after_scenario(context, scenario):
 def after_step(context, step):
     if step.status == "failed":
         driver.scenario_fail(context.scenario.name, step.name, context.date_hour_test)
+        driver.scenario_end()

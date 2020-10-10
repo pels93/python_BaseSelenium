@@ -15,47 +15,35 @@ def delete_old_report():
 
 class StartDriver:
     def __init__(self):
-        self.typeDriver = ReadConfig.get_type_driver()
-        if self.typeDriver == appium:
-            self.appium = Appium()
+        self.typeDriverStr = str(ReadConfig.get_type_driver()).lower()
+        if self.typeDriverStr == appium:
+            self.typeDriver = Appium()
         else:
-            self.selenium = Selenium()
+            self.typeDriver = Selenium()
 
     def scenario_end(self):
-        self.get_driver().driver.quit()
+        self.typeDriver.driver.quit()
 
     def scenario_fail(self, scenario, step, date):
         directory_screen = Utils.merge_directory_to_folder(
             Utils.folder_proyect(), name_folder_screen)
         Utils.folder_create(directory_screen)
-        if self.typeDriver == appium:
+        if self.typeDriverStr == appium:
             directory_screen_final = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
                 Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
-                    directory_screen, date), self._get_driver_name_()), ReadConfig.get_mobile_platform()),
+                    directory_screen, date), self.typeDriverStr), ReadConfig.get_mobile_platform()),
                 scenario)
         else:
             directory_screen_final = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
                 Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
-                    directory_screen, date), self._get_driver_name_()), ReadConfig.get_browser()),
+                    directory_screen, date), self.typeDriverStr), ReadConfig.get_browser()),
                 scenario)
         self._screenshot_(Utils.folders_create_tree(directory_screen, directory_screen_final), step)
-
-    def get_driver(self):
-        if self.typeDriver == appium:
-            return self.appium
-        else:
-            return self.selenium
-
-    def _get_driver_name_(self):
-        if self.typeDriver == appium:
-            return appium
-        else:
-            return selenium
 
     def _screenshot_(self, directory_screen, step):
         namefile = Utils.folder_validate_name(step) + ".png"
         ruta = directory_screen + "\\" + namefile
-        self.get_driver().driver.save_screenshot(ruta)
+        self.typeDriver.driver.save_screenshot(ruta)
         if Utils.folder_exists(ruta):
             Utils.print_info("INFO-> ScreenShot saved in \n" + ruta)
         else:
