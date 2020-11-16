@@ -16,11 +16,11 @@ class UtilsWebElements:
         self.driver: WebDriver = driver
         self.utilsDriver: UtilsDriverSelenium = UtilsDriverSelenium(self.driver, type_browser)
 
-    def press_enter(self, element: WebElement = None):
+    def press_key(self, element: WebElement = None, key: Keys = Keys.RETURN):
         aux = element
-        if aux == None:
+        if not aux:
             aux: WebElement = self.driver.find_element_by_css_selector("body")
-        aux.send_keys(Keys.RETURN)
+        aux.send_keys(key)
 
     def find_element_by_name(self, name: str):
         return self.driver.find_element_by_name(name)
