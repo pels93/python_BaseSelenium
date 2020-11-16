@@ -1,6 +1,7 @@
 # submit
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.webdriver import *
+from selenium.webdriver.remote.webelement import WebElement
 
 from driver.typeDriver.selenium.utilsSelenium.utilsDriverSelenium import UtilsDriverSelenium
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import *
@@ -15,8 +16,11 @@ class UtilsWebElements:
         self.driver: WebDriver = driver
         self.utilsDriver: UtilsDriverSelenium = UtilsDriverSelenium(self.driver, type_browser)
 
-    def press_key(self, element):
-        element.send_keys(Keys.RETURN)
+    def press_enter(self, element: WebElement = None):
+        aux = element
+        if aux == None:
+            aux: WebElement = self.driver.find_element_by_css_selector("body")
+        aux.send_keys(Keys.RETURN)
 
     def find_element_by_name(self, name: str):
         return self.driver.find_element_by_name(name)

@@ -9,7 +9,7 @@ class UtilsDriverSelenium:
 
     def __init__(self, driver, type_browser):
         self.driver: WebDriver = driver
-        self.typeBrowser  = type_browser
+        self.typeBrowser = type_browser
 
     def sleep(self, seconds):
         time.sleep(seconds)
@@ -26,6 +26,23 @@ class UtilsDriverSelenium:
     def delete_cache(self):
         self.driver.delete_all_cookies()
 
+    # alerts
+    def alert_get(self):
+        return self.driver.switch_to.alert
+
+    def alert_get_text(self):
+        return self.alert_get().text
+
+    def alert_accept(self):
+        return self.alert_get().accept()
+
+    def alert_dismiss(self):
+        return self.alert_get().dismiss()
+
+    def alert_sendKeys(self, text: str):
+        self.alert_get().send_keys(text)
+
+    # navigate
     def browser_go_to(self, url):
         self.driver.get(url)
 
@@ -121,7 +138,8 @@ class UtilsDriverSelenium:
     def drag_and_drop_div(self, element, pos_x=0, pos_y=0):
         # https://github.com/SeleniumHQ/selenium/issues/3269
         element_body: WebElement = self.driver.find_element_by_css_selector("body")
-        c_pixel = element.size["height"] * 0.80
+        c_power = 0.40
+        c_pixel = element.size["height"] * c_power
 
         aux_pos_x = int(pos_x / c_pixel)
         aux_pos_y = int(pos_y / c_pixel)
@@ -134,7 +152,7 @@ class UtilsDriverSelenium:
             count_for_x = 0
         else:
             # need more size for effect css
-            c_pixel = element.size["width"] * 0.80
+            c_pixel = element.size["width"] * c_power
             aux_pos_x = c_pixel
             count_for_x = aux_pos_x
 
