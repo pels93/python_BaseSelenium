@@ -9,6 +9,6 @@ setup(
               'driver.typeDriver.utilsSelectDriver', 'features', 'features.steps'],
     install_requires=['behave', 'selenium','webdriver_manager','Appium-Python-Client',
                       'Django==3.0.7'],
-    author='danigonz',
+    author='pels93',
     description=''
 )
