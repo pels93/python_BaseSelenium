@@ -1,14 +1,10 @@
-# submit
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.webdriver import *
 from selenium.webdriver.remote.webelement import WebElement
-
 from driver.typeDriver.selenium.utilsSelenium.utilsDriverSelenium import UtilsDriverSelenium
 from driver.typeDriver.utilsSelectDriver.utilsSelectDriver import *
 
-
 # https://www.geeksforgeeks.org/screenshot-element-method-selenium-python/?ref=rp
-
 
 class UtilsWebElements:
 

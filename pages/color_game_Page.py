@@ -15,6 +15,6 @@ class ColorGames:
         self.selenium.utilsDriver.wait(1)
 
     def start_game(self):
-        start: WebElement = self.selenium.driver.find_element_by_class_name("main").click()
+        self.selenium.driver.find_element_by_class_name("main").click()
         self.start_game()
 

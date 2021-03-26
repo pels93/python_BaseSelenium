@@ -1,7 +1,7 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.webdriver import *
 import time
-
+from urllib.parse import unquote
 from selenium.webdriver.remote.webelement import WebElement
 
 
@@ -10,6 +10,9 @@ class UtilsDriverSelenium:
     def __init__(self, driver, type_browser):
         self.driver: WebDriver = driver
         self.typeBrowser = type_browser
+
+    def url_to_string(self, url):
+        return unquote(url)
 
     def sleep(self, seconds):
         time.sleep(seconds)
@@ -25,6 +28,15 @@ class UtilsDriverSelenium:
 
     def delete_cache(self):
         self.driver.delete_all_cookies()
+
+    def run_in_iframe(self, enable: bool = True):
+        if not enable:
+            self.driver.switch_to.parent_frame()
+        else:
+            self.wait(2)
+            enable_iframe = self.driver.find_elements_by_tag_name("iframe")
+            if len(enable_iframe) > 0:
+                self.driver.switch_to.frame(self.driver.find_element_by_tag_name("iframe"))
 
     # alerts
     def alert_get(self):
@@ -76,6 +88,19 @@ class UtilsDriverSelenium:
         action.move_to_element(element).release().perform()
 
     def click(self, element: WebElement):
+        result = True
+        try:
+            self._aux_click_(element)
+        except:
+            try:
+                self.scroll_by_element(element)
+                self.sleep(3)
+                self._aux_click_(element)
+            except:
+                result = False
+        return result
+
+    def _aux_click_(self, element: WebElement):
         if str(self.typeBrowser).lower() == 'iexplore':
             self.driver.execute_script("return document.body.scrollHeight")
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -185,7 +210,6 @@ class UtilsDriverSelenium:
 
     def change_tab(self, index: int):
         self.driver.switch_to.window(self.driver.window_handles[index])
-
     def count_tabs(self):
         return len(self.driver.window_handles)
 
@@ -198,3 +222,9 @@ class UtilsDriverSelenium:
               window.outerHeight - window.innerHeight + arguments[1]];
             """, width, height)
         self.driver.set_window_size(*window_size)
+
+    def get_response_headers(self):
+        headers = self.driver.execute_script(
+            "var req = new XMLHttpRequest();req.open('GET', document.location, false);req.send(null);return req.getAllResponseHeaders()")
+        headers = headers.splitlines()
+        return headers
