@@ -1,30 +1,32 @@
 from selenium import webdriver
 from driver.typeDriver.interfaces.dictionary_driver import *
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager, IEDriverManager
-from webdriver_manager.opera import OperaDriverManager
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+from driver.typeDriver.selenium.utilsSelenium.listWebDrivers.edge import Edge
+from driver.typeDriver.selenium.utilsSelenium.listWebDrivers.firefox import Firefox
+from driver.typeDriver.selenium.utilsSelenium.listWebDrivers.ie import internetExplorer
+from driver.typeDriver.selenium.utilsSelenium.listWebDrivers.opera import Opera
+from driver.typeDriver.selenium.utilsSelenium.listWebDrivers.chrome import Chrome
 
 
-#   https://pypi.org/project/webdriver-manager/
 class StartDriverSelenium:
 
     @staticmethod
     def start_browser(browser):
         if browser == firefox:
-            driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            firefox_webdriver = Firefox()
+            driver = firefox_webdriver.start()
         elif browser == edge:
-            driver = webdriver.Edge(EdgeChromiumDriverManager().install())
+            edge_webdriver = Edge()
+            driver = edge_webdriver.start()
         elif browser == iexplorer:
-            driver = webdriver.Ie(IEDriverManager().install())
+            explorer = internetExplorer()
+            driver = explorer.start()
         elif browser == opera:
-            driver = webdriver.Opera(executable_path=OperaDriverManager().install())
+            opera_webdriver = Opera()
+            driver = opera_webdriver.start()
         elif browser == safari:
             driver = webdriver.Safari()
         else:  # Chrome
-            # enable get log console
-            d = DesiredCapabilities.CHROME
-            d['loggingPrefs'] = {'browser': 'ALL'}
-            driver = webdriver.Chrome(ChromeDriverManager().install(), desired_capabilities=d)
+            chrome_webdriver = Chrome()
+            driver = chrome_webdriver.start()
         return driver
