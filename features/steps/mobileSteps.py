@@ -74,8 +74,8 @@ def press_number_calculate(context, numero):
 
 @Then('el resultado tiene que ser "{numero}"')
 def step(context, numero):
-    appium.utilsMobileElements.pressLongElement(mobile.pantalla, 2000)
+    appium.utilsDriver.press_long_element(mobile.pantalla, 2000)
     mobile.findResult()
     textResult = str(mobile.result.text)
     textResult = textResult[textResult.find('"') + 1:textResult.rfind('"')]
-    appium.utilsMobileElements.assertEqualText(textResult, str(0), False)
+    appium.utilsMobileElements.assert_equal_text(textResult, str(0), False)

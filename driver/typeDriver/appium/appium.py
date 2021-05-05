@@ -9,6 +9,6 @@ class Appium:
 
     def __init__(self):
         self.platform = ReadConfig.get_mobile_platform()
-        self.driver = StartDriverAppium.start_driver_platform(self.platform)
-        self.utilsDriver = UtilsDriverAppium(self.driver)
-        self.utilsMobileElements = UtilsMobileElements(self.driver)
+        self.driver :StartDriverAppium = StartDriverAppium.start_driver_platform(self.platform)
+        self.utilsDriver: UtilsDriverAppium = UtilsDriverAppium(self.driver)
+        self.utilsMobileElements :UtilsMobileElements= UtilsMobileElements(self.driver)
