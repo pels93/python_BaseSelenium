@@ -14,7 +14,8 @@ class Selenium:
     def __init__(self):
         self.delete_old_drivers(ReadConfig.get_enable_delete_old_driver())
         self.browser = ReadConfig.get_browser()
-        self.driver: WebDriver = StartDriverSelenium.start_browser(self.browser)
+        driverSelenium=StartDriverSelenium()
+        self.driver: WebDriver = driverSelenium.start_browser(self.browser)
         self.utilsDriver = UtilsDriverSelenium(self.driver, self.browser)
         self.utilsWebElements = UtilsWebElements(self.driver, self.browser)
 
