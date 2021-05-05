@@ -97,19 +97,20 @@ setting file  `settings.json` from web
 	"enableDeleteOldReport": true
 	}
 
-Setting file  `settings.json` from mobile
+Setting file `settings.json` from mobile
 
 	{
-	"typeDriver"="appium"
-	"urlServerAppium"="http://127.0.0.1:4723/wd/hub"
-	"mobilePlatform"="Android"
-	"mobileLanguage"="ES_es"
-	"app="test.apk"
-	"nameMobile"="Pixel_2_API_27"
-	"versionMobile"="8.1.0"
-	"adbName"="emulator-5556"
-	"enableDeleteOldReport": true
-	}
+    "typeDriver":"appium",
+    "urlServerAppium":"http://127.0.0.1:4723/wd/hub",
+    "mobilePlatform":"Android",
+    "mobileLanguage":"ES_es",
+    "app":"test.apk",
+    "nameMobile":"Pixel_2_API_27",
+    "versionMobile":"8.1.0",
+    "adbName":"emulator-5556",
+    "enableDeleteOldReport": true
+    }
+
      
 ----
 ## Write Steps
