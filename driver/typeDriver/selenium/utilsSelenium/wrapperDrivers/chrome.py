@@ -26,7 +26,7 @@ class Chrome():
     def _set_options_(self):
         mobile_emulation = {"deviceName": "Nexus 10"}
         opts: Options = Options()
-        opts.experimental_options("mobileEmulation", mobile_emulation)
+        #opts.experimental_options("mobileEmulation", mobile_emulation)
         opts.headless = True
         return opts
 
