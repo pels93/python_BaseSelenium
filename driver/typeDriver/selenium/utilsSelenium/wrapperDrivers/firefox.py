@@ -31,6 +31,6 @@ class Firefox():
         return profile
 
     def _set_options_(self):
-        options = Options()
-        options.headless = True
-        return options
+        opts: Options = Options()
+        opts.headless = True
+        return opts
