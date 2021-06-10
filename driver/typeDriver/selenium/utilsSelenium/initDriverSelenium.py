@@ -1,5 +1,5 @@
 from driver.typeDriver.interfaces.dictionary_driver import *
-from driver.typeDriver.selenium.utilsSelenium.wrapperDrivers.edge import Edge
+from driver.typeDriver.selenium.utilsSelenium.wrapperDrivers.lauchedge import LauchEdge
 from driver.typeDriver.selenium.utilsSelenium.wrapperDrivers.firefox import Firefox
 from driver.typeDriver.selenium.utilsSelenium.wrapperDrivers.ie import internetExplorer
 from driver.typeDriver.selenium.utilsSelenium.wrapperDrivers.opera import Opera
@@ -19,7 +19,7 @@ class StartDriverSelenium:
             firefox_webdriver = Firefox()
             driver = firefox_webdriver.start()
         elif browser == edge:
-            edge_webdriver = Edge()
+            edge_webdriver = LauchEdge()
             driver = edge_webdriver.start()
         elif browser == iexplorer:
             explorer = internetExplorer()

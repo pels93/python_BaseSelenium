@@ -25,5 +25,7 @@ class Chrome():
     def _set_options_(self):
         mobile_emulation = {"deviceName": "Nexus 10"}
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-        # return chrome_options
+        #chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        return chrome_options

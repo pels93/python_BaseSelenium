@@ -1,6 +1,7 @@
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.firefox.webdriver import WebDriver
 from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
 from selenium import webdriver
 
 
@@ -9,7 +10,7 @@ class Firefox():
     def start(self) -> WebDriver:
         return webdriver.Firefox(firefox_profile=self._create_firefox_profile_(),
                                  capabilities=self._set_capabilities_(),
-                                 executable_path=GeckoDriverManager().install())
+                                 executable_path=GeckoDriverManager().install(), options=self._set_options_())
 
     def _set_capabilities_(self):
         capabilities = DesiredCapabilities.FIREFOX.copy()
@@ -28,3 +29,8 @@ class Firefox():
         profile.set_preference("browser.link.open_newwindow.restriction", 0)
         profile.update_preferences()
         return profile
+
+    def _set_options_(self):
+        options = Options()
+        options.headless = True
+        return options
