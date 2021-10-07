@@ -29,6 +29,7 @@ class Chrome():
         opts: Options = Options()
         # disable cors
         opts.add_argument("--disable-web-security")
+        opts.add_argument("--allow-running-insecure-content")
         # mode mobile
         # opts.experimental_options("mobileEmulation", mobile_emulation)
         opts.headless = True
