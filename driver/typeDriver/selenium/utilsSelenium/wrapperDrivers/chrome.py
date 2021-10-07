@@ -1,5 +1,5 @@
 from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
@@ -15,6 +15,7 @@ class Chrome():
         capabilities = DesiredCapabilities.CHROME.copy()
         # print log browser
         capabilities['loggingPrefs'] = {'browser': 'ALL'}
+        # accept certificates
         capabilities['acceptInsecureCerts'] = True
         capabilities['acceptSslCerts'] = True
         capabilities['ACCEPT_SSL_CERTS'] = True
@@ -26,7 +27,9 @@ class Chrome():
     def _set_options_(self):
         mobile_emulation = {"deviceName": "Nexus 10"}
         opts: Options = Options()
-        #opts.experimental_options("mobileEmulation", mobile_emulation)
+        # disable cors
+        opts.add_argument("--disable-web-security")
+        # mode mobile
+        # opts.experimental_options("mobileEmulation", mobile_emulation)
         opts.headless = True
         return opts
-
