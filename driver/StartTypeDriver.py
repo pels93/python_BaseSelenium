@@ -25,8 +25,15 @@ class StartDriver:
         self.typeDriver.driver.quit()
 
     def scenario_fail(self, scenario, step, date):
+        directory_output=Utils.merge_directory_to_folder(
+            Utils.folder_proyect(), "output")
+        try:
+            if not os.path.isdir(directory_output):
+                os.mkdir(directory_output)
+        except:
+            pass
         directory_screen = Utils.merge_directory_to_folder(
-            Utils.folder_proyect(), name_folder_screen)
+            directory_output, name_folder_screen)
         Utils.folder_create(directory_screen)
         if self.typeDriverStr == appium:
             directory_screen_final = Utils.merge_directory_to_folder(Utils.merge_directory_to_folder(
