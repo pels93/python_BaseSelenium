@@ -22,6 +22,12 @@ def run_browsers(navegador:str, tags):
         os.system(
             '(echo {&echo "typeDriver": "selenium",&echo "typeBrowser": "' + navegador + '",&echo "enableDeleteOldReport": '
                                                                                          'false &echo })  > settings.json')
+    elif navegador.lower()=="android" or navegador.lower()=="ios":
+        os.system('(echo {&echo "typeDriver": "appium",&echo "mobilePlatform":"android",'
+                  '&echo "urlServerAppium":"http://127.0.0.1:4723/wd/hub",&echo "mobileLanguage":"ES_es",'
+                  '&echo "app":"test.apk",&echo "nameMobile":"Pixel_2_API_27",&echo "versionMobile":"8.1.0",'
+                  '&echo "adbName":"emulator-5554",&echo "enableDeleteOldReport": true &echo }) > settings.json')
+
     aux = "python " + name_file + " " +navegador+" "+ (auxtags)
     if platform.system() == "Windows":  # Windows
         print(os.system('cmd /k "' + aux + '"'))
