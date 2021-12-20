@@ -8,7 +8,7 @@ Feature: navegar por google
     And   Comprobar que lleva a "https://www.nasa.gov/"
     And   se abre una nueva pestana
     And   se selecciona la "1" pestana
-    And   El navegador introduce la URL "https://starfriend.es"
+    And   El navegador introduce la URL "https://lowi.es"
     And   El navegador espera "3" segundos
     And   se cierra la pestana "1"
     And   se selecciona la "0" pestana
